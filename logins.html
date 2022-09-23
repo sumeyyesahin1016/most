@@ -1,0 +1,56 @@
+<html>
+<head>
+    <link href="login_style.css" type="text/css" rel="stylesheet"/>
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript">
+        function do_login()
+        {
+            var username=$("#username").val();
+            var password=$("#password").val();
+            if(username!="username" && password!="password")
+            {
+                $("#loading_spinner").css({"display":"block"});
+                $.ajax({
+                    url: "http://kargokontrol.modaselvim.net:4554/api/v1/user/login" ,
+                    method: "POST",
+                    timeout: 0,
+                     headers: {
+                        "Content-Type": "application/json"
+                    },
+                    data: JSON.stringify({
+                        "username": "sumeyye.sahin@modaselvim.com",
+                        "password": "1997Ss1997"
+                    }),
+                    success: function (data) {
+                        window.location.replace('index.html');
+                    },
+
+
+                });
+            }
+            else
+            {
+                alert("Please Fill All The Details");
+            }
+            return false;
+        }
+    </script>
+</head>
+<body>
+<div id="wrapper">
+
+    <div id="login_form">
+        <h1>LOGIN FORM</h1>
+        <form method="post" onsubmit="return do_login();">
+
+            <input type="text" name="username" id="username" placeholder="Enter Email">
+            <br>
+            <input type="password" name="password" id="password" placeholder="***********">
+            <br>
+            <input type="submit" name="login" value="DO LOGIN" id="login_button">
+        </form>
+    </div>
+
+</div>
+</body>
+</html>
